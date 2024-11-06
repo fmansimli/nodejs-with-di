@@ -1,5 +1,6 @@
 import http from "http";
 import app from "./app";
+import { AppDataSource } from "./data-source";
 
 const server = http.createServer(app);
 
@@ -9,7 +10,7 @@ bootstrap().then(null);
 
 async function bootstrap() {
   try {
-    await Promise.resolve();
+    await AppDataSource.initialize();
 
     server.listen(PORT, () => {
       console.log("listening to http://localhost:3000");

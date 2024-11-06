@@ -10,4 +10,6 @@ const controller = DI.get<UsersController>(TYPES.UsersController);
 router.get("/", controller.getAllUsers.bind(controller));
 router.get("/:id", controller.getUserById.bind(controller));
 
+router.post("/", controller.createUser.bind(controller));
+
 export default router;

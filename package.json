@@ -7,8 +7,15 @@
     "git:cm": "git commit -m \"$npm_package_name ($npm_package_version) ## $(date) ## \"",
     "git": "git add . && yarn git:cm && git push origin master",
     "inspect": "node --inspect dist/index.js",
-    "dev": "nodemon --exec ts-node src/index.ts",
-    "test": "jest"
+    "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "prepare": "husky install",
+    "typeorm": "typeorm-ts-node-esm",
+    "mig:generate": "typeorm-ts-node-esm migration:generate migrations/$npm_config_name -d ./src/data-source.ts --pretty",
+    "mig:run": "typeorm-ts-node-esm migration:run  -d ./src/data-source.ts",
+    "mig:revert": "typeorm-ts-node-esm migration:revert  -d ./src/data-source.ts",
+    "mig:show": "typeorm-ts-node-esm migration:show  -d ./src/data-source.ts",
+    "test": "jest",
+    "build": "tsc"
   },
   "keywords": [
     "nodejs",
@@ -22,11 +29,14 @@
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
     "helmet": "^8.0.0",
     "inversify": "^6.0.3",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20",
     "winston": "^3.16.0"
   },
   "devDependencies": {

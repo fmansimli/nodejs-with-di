@@ -24,6 +24,7 @@ coverage
 *.lcov
 
 .DS_Store
+mydb.sqlite
 
 # nyc test coverage
 .nyc_output

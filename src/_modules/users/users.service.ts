@@ -1,17 +1,33 @@
-import { injectable } from "inversify";
-import { User } from "./user";
+import type { Repository } from "typeorm";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../di/constants";
+
 import type { IUserService } from "./users.types";
+import { User } from "./user.entity";
+
+import { NotFoundError } from "../../errors";
 
 @injectable()
 export class UsersService implements IUserService {
-  getAll(): Promise<User[]> {
-    return Promise.resolve([{ name: "Farid", id: 1, email: "fm@gmail.com" }]);
+  constructor(@inject(TYPES.UsersRepo) private readonly userRepo: Repository<User>) {}
+
+  async createUser(userAttrs: Partial<User>) {
+    const user = new User(userAttrs);
+    await this.userRepo.save(user);
+    return user;
   }
-  getOne(id: number): Promise<User> {
-    return Promise.resolve({
-      id,
-      name: "Farid",
-      email: "fm@gmail.com"
-    });
+
+  async getAll(): Promise<User[]> {
+    const users = await this.userRepo.find();
+    return users;
+  }
+
+  async getOne(id: number): Promise<User> {
+    const user = await this.userRepo.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundError("User not found");
+    }
+    return user;
   }
 }

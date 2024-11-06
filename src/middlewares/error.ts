@@ -4,7 +4,7 @@ import { join } from "path";
 
 export const catch404: RequestHandler = async (req, res, next) => {
   try {
-    res.status(200).sendFile(join(process.cwd(), "dist/public/index.html"));
+    res.status(404).json({ message: "Route Not Found" });
   } catch (error) {
     next(error);
   }
