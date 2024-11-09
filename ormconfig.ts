@@ -4,7 +4,10 @@ const dbConfig: Partial<DataSourceOptions> = {
   entityPrefix: "",
   entitySkipConstructor: true,
   migrationsTableName: "app_migrations",
-  metadataTableName: "typeorm-metas"
+  metadataTableName: "typeorm-metas",
+  migrationsRun: false,
+  maxQueryExecutionTime: 5000,
+  dropSchema: false
 };
 
 switch (process.env.NODE_ENV) {
@@ -18,7 +21,7 @@ switch (process.env.NODE_ENV) {
       database: "mydb",
       entities: ["**/*.entity.js"],
       logging: false,
-      migrations: ["migrations/*.js"]
+      migrations: ["./src/migrations/*.js"]
     } as DataSourceOptions);
     break;
 
@@ -30,7 +33,7 @@ switch (process.env.NODE_ENV) {
       logging: ["query", "migration", "error"],
       synchronize: true,
       dropSchema: false,
-      migrations: ["migrations/*.ts"]
+      migrations: ["./src/migrations/*.ts"]
     } as DataSourceOptions);
     break;
 
@@ -40,7 +43,7 @@ switch (process.env.NODE_ENV) {
       database: "test.sqlite",
       entities: ["**/*.entity.ts"],
       logging: false,
-      migrations: ["migrations/*.ts"],
+      migrations: ["./src/migrations/*.ts"],
       migrationsRun: true
     } as DataSourceOptions);
     break;

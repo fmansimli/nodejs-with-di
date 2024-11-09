@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "es6"
-    ],
-    "types": [
-      "reflect-metadata"
-    ],
+    "target": "ES5",
+    "lib": ["es6"],
+    "types": ["reflect-metadata"],
     "rootDir": ".",
     "outDir": "dist",
-    "module": "commonjs",
+    "module": "ES2022",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -19,6 +15,7 @@
     "strict": true,
     "skipLibCheck": true,
     "removeComments": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowJs": true
   }
 }
