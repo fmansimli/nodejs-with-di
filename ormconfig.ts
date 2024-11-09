@@ -1,4 +1,5 @@
 import type { DataSourceOptions } from "typeorm";
+import "dotenv/config";
 
 const dbConfig: Partial<DataSourceOptions> = {
   entityPrefix: "",
@@ -31,7 +32,7 @@ switch (process.env.NODE_ENV) {
       database: "mydb.sqlite",
       entities: ["**/*.entity.ts"],
       logging: ["query", "migration", "error"],
-      synchronize: true,
+      synchronize: false,
       dropSchema: false,
       migrations: ["./src/migrations/*.ts"]
     } as DataSourceOptions);

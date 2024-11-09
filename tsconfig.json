@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "lib": ["es6"],
-    "types": ["reflect-metadata"],
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "ES5"],
+    "types": ["node"],
     "rootDir": ".",
     "outDir": "dist",
-    "module": "ES2022",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
